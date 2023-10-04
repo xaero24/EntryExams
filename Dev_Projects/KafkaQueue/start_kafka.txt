@@ -1,0 +1,12 @@
+Install docker and its additions using the docker-install.sh script
+
+Move inside the kafka-docker directory.
+Start the docker container using docker-compose:
+  docker-compose up -d
+
+Then run the following command:
+  docker exec -i -t -u root $(docker ps | grep docker_kafka | cut -d' ' -f1) /bin/bash
+Inside it, run the following command:
+  $KAFKA_HOME/bin/kafka-topics.sh --create --partitions 4 --bootstrap-server localhost:9092 --topic test
+
+Once the confirmation is received, run the procucer and consumer python scripts.
